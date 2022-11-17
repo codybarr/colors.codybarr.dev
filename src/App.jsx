@@ -1,8 +1,6 @@
 import { createSignal, createMemo, createEffect } from 'solid-js'
 import { colord } from 'colord'
 
-import styles from './App.module.css'
-
 import findColor, { COLOR_NAMES } from './utils/colorNames'
 import classNames from './utils/classNames'
 
@@ -15,6 +13,7 @@ function App() {
   const [color, setColor] = createSignal(getRandomColor())
 
   const handleColorChange = (e) => setColor(e.target.value)
+  const handleColorSelect = (color) => () => setColor(color)
 
   const matchedColor = () => findColor(color())
   const isLight = () => colord(color()).isLight()
@@ -41,7 +40,10 @@ function App() {
               <h1 class="text-3xl font-bold">{colorName}</h1>
               <p>Exact Match: {exactMatch ? 'Yes' : 'No'}</p>
               <p>
-                Closest Match: <span class="lowercase">{colorCode}</span>
+                Closest Match:{' '}
+                <span class="lowercase" onClick={handleColorSelect(colorCode)}>
+                  {colorCode}
+                </span>
               </p>
             </>
           )
