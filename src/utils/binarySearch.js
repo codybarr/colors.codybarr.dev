@@ -1,6 +1,5 @@
-// find binary search closest match.
-// Source: https://stackoverflow.com/a/48876834 .
-export default (arr, target, lo = 0, hi = arr.length - 1) => {
+// Source: https://stackoverflow.com/a/48876834
+export const binarySearch = (arr, target, lo = 0, hi = arr.length - 1) => {
   if (target < arr[lo]) {
     return arr[0]
   }
